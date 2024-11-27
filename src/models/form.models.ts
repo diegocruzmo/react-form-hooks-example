@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+/* Example schema */
 export const schema = z
   .object({
     name: z.string().min(2, 'Name is required!'),
@@ -13,3 +14,15 @@ export const schema = z
   })
 
 export type FormValues = z.infer<typeof schema>
+
+/* Schema for Form Enterprise */
+export const schemaFormEnterprise = z.object({
+  firstname: z.string().min(2, 'First Name is required!'),
+  lastname: z.string().min(2, 'Last Name is required!'),
+  address: z.string().min(5, 'Address id required!'),
+  email: z.string().email('Invalid email!').min(5, 'Email is required!'),
+  phone: z.string().min(8, 'Invalid phone number!'),
+  info: z.string().optional()
+})
+
+export type FormEnterpriseValues = z.infer<typeof schemaFormEnterprise>
